@@ -16,23 +16,23 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history for proper git operations
+          fetch-depth: 0 # Fetch all history for proper git operations
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'
-          bundler-cache: true  # Automatically cache and install gems
+          ruby-version: "3.1"
+          bundler-cache: true # Automatically cache and install gems
 
       - name: Install Node.js dependencies
         run: npm install
@@ -62,15 +62,15 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
-    
+
     permissions:
       pages: write
       id-token: write
-    
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
