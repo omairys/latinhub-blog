@@ -27,7 +27,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -36,7 +35,7 @@ jobs:
           bundler-cache: true  # Automatically cache and install gems
 
       - name: Install Node.js dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build CSS and JS assets
         run: npm run build
